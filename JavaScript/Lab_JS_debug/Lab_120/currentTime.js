@@ -1,0 +1,2 @@
+$("#report").text(Date());
+

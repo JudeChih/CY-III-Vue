@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .task-description,
+        .list-group {
+            font-size: 1.25em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="page-header">
+            <h1>JavaScript 除錯練習</h1>
+        </div>
+
+        <p class="task-description">
+            1 + 2 + 3 + ... + 10 應該是 55，但我們的程式算出 45 這個錯誤的值。
+        </p>
+
+        <ul id="latestNews" class="list-group">
+            <li class="list-group-item">去除 console.log 那行註解 </li>
+            <li class="list-group-item">按下 Ctrl + Shift + I 啟動 Chrome 的開發人員工具</li>
+            <li class="list-group-item">點一下按鈕，觀察 console 頁籤的內容</li>
+        </ul>
+
+        <button id="btnTest">點我一下，開始偵錯</button>
+        <div id="report"></div>
+
+    </div>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script>
+    
+    function sum1ToN(upperValue) {
+        var result = 0;
+        var i = 0;
+        
+        for (i = 1; i <= upperValue; i++) {
+            result = result + i;
+            // console.log("i = " + i + " result = " + result);
+            // console.assert(
+            //     result != 45, 
+            //     "when i = " + i + ", we got wrong value.");
+        }
+
+        return result;
+    }
+    
+    btnTest.onclick = function () {
+        var n = 10;
+        
+        // debugger;
+        
+        var answer = "1 + 2 + 3 + ... + 10 = " + sum1ToN(n);
+        
+        report.innerHTML = answer;
+    }
+
+    </script>
+
+</body>
+
+</html>

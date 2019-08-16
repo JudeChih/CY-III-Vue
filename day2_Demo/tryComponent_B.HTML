@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="lab">
+        <!-- 兩個按鈕如何個別計次? -->
+        <button v-on:click="count++"> 點按次數: {{count}} </button>
+        <br />
+        <button v-on:click="count++"> 點按次數: {{count}} </button>
+    </div>
+
+<script>
+
+    var labApp = new Vue({
+        el: '#lab',
+        data: {
+            count: 0
+        }
+    })
+
+</script>
+
+</body>
+</html>

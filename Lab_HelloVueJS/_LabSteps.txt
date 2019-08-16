@@ -1,0 +1,237 @@
+﻿Lab: Vue.js 入門: Hello! Vue.js
+
+
+1.  繫結資料到元素內容
+
+
+1.1 新建一個 HTML 檔案，檔名: hello_VueJs.HTML
+    內容如下:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <style>
+        body>div {
+            font-family: sans-serif;
+            font-size: 1.25em;
+            border: 1px solid gray;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+
+
+<script>
+
+</script>
+</body>
+</html>
+
+
+1.2 在 </head> 的前一行，加入下列這行以引用 Vue.js:
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+1.3 body 區塊加入下列內容:
+
+    <div id="app1">
+        {{ message }}
+    </div>
+
+    <Note> 
+    存檔後，Open with Live Server 檢視作品
+    ==> {{ message }}
+
+
+1.4 在頁尾的 script 程式區塊加入下列程式:
+
+    var app1 = new Vue({
+        el: "#app1",
+        data: {
+            message: 'Hello Vue!'
+        }
+    });
+
+
+    <Note> 
+    存檔後，在瀏覽器檢視作品
+    ==> {{ message }} 變成 Hello Vue!
+
+    <Note>
+    可以的話，請不要複製貼上，手動鍵入一遍程式。
+
+
+1.5 組合鍵 Ctrl + Shift + I 或功能鍵 F12
+    在 Console 頁籤輸入:
+    app1.message = 'Hello! Vue.js';
+
+    <Note>
+    ==> {{ message }} 那邊變成 Hello! Vue.js
+
+
+
+
+2.  繫結資料到屬性值
+
+
+2.1 在 <div id="app1> 之後，
+    再加入下列 div 區塊:
+
+    <div id="app2">
+        <span v-bind:title="message">
+            請將滑鼠移到本段文字上方
+        </span>
+    </div>
+
+    <Note>
+    v-bind:title="message"
+    可簡寫成:
+    :title="message"
+    
+
+2.2 頁尾的 script 程式區塊加入下列程式:
+
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            message: '載入時間: ' + new Date().toLocaleString()
+        }
+    });
+
+
+2.3 存檔後，在瀏覽器檢視作品
+    
+    <Note>
+    滑鼠移到 div 內的文字上方，會出現日期時間資訊。
+
+
+
+
+3.  符合特定條件才顯示內容
+
+
+3.1 在 body 區塊再加入下列 div 區塊:
+
+    <div id="app3">
+        <span v-if="seen">Now you see me</span>
+    </div>    
+
+
+3.2 頁尾的 script 程式區塊加入下列程式:
+
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            seen: true
+        }
+    });
+
+
+3.3 存檔後，在瀏覽器檢視作品
+
+
+3.4 組合鍵 Ctrl + Shift + I 或功能鍵 F12
+    在 Console 頁籤輸入:
+    app3.seen = false;
+
+    <Note>
+    ==> Now you see me 那段文字不見了
+
+3.5 在 Console 頁籤輸入:
+    app3.seen = true;
+
+    <Note>
+    ==> Now you see me 那段文字又回來了
+
+
+
+
+4.  以迴圈語法重複內容
+
+
+4.1 在 body 區塊再加入下列 div 區塊:
+
+    <div id="app4">
+        <ol>
+            <li v-for="todoItem in todoList">
+                {{ todoItem.text }}
+            </li>
+        </ol>
+    </div>    
+
+
+4.2 頁尾的 script 程式區塊加入下列程式:
+
+    var app4 = new Vue({
+        el: '#app4',
+        data: {
+            todoList: [
+                { text: 'Learn JavaScript' },
+                { text: 'Learn Vue' },
+                { text: 'Build something awesome' }
+            ]
+        }
+    });
+
+
+4.3 存檔後，在瀏覽器檢視作品
+
+
+
+
+5.  寫作事件處理函式
+
+
+5.1 修改 <div id="app1"> 的內容，如下:
+
+    <div id="app1">
+        {{ message }}<br>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+
+
+
+5.2 針對 app1 物件加入定義 reverseMessage 事件處理函式
+
+    var app1 = new Vue({
+        el: "#app1",
+        data: {
+            message: 'Hello Vue!'
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    });
+
+
+5.3 存檔後，在瀏覽器檢視作品
+    點按「Reverse Message」按鈕
+
+
+
+
+6.  雙向資料繫結
+
+
+6.1 修改 <div id="app1"> 的內容: (新加入 <input v-model="message"><br>)
+
+    <div id="app1">
+        <input v-model="message"><br>
+        {{ message }}<br>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+
+
+6.2 存檔後，在瀏覽器檢視作品
+    輸入任意內容到文字輸入方塊
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Array</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+
+    <input type="button" id="test" value="click me to test your code" />
+    <div id="report"></div>
+
+<script>
+
+test.onclick = function () {
+    // 陣列排序
+    // -------------------
+    // 參考資料: 
+    // https://www.w3schools.com/jsref/jsref_sort.asp
+    // 
+    // 任務: 
+    // 由小到大排列數字，但依照「步步高陞」的遊戲規則，
+    // 數字 2 是最大的，
+    // 下列程式該怎麼修改呢?
+    
+    var data = [3, 0, 1, 8, 7, 2, 5, 4, 9, 6];
+    
+    // 你的任務程式:
+    data.sort(function (x, y) {
+        console.log(x, y);
+        if (x == 2)
+            return 1
+        else if (y == 2)
+            return -1
+        else
+            return x - y;
+    });
+
+    
+    report.innerText = data.toString();
+
+}  // end of test.onclick
+
+</script>
+
+</body>
+</html>

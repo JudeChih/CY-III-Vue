@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    <script>
+        function Box() {
+            this.color = "black";
+        }
+        
+        Box.prototype.getColor = function () {
+            return this.color;
+        }
+
+        var box1 = new Box();
+        var box2 = new Box();
+        box2.color = "white";
+
+        debug.innerText = 
+            box1.getColor() + ", " + box2.getColor();
+
+
+        // Error: Cannot set property 'setColor' of undefined
+        // box1.prototype.setColor = function (colorValue) {
+        //     this.color = colorValue;
+        // }
+    </script>
+</body>
+</html>

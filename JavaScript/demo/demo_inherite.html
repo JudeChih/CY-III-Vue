@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    <script>
+
+        function Box() {
+            this.color = "golden";
+        }
+        
+        function MusicBox() {
+            this.play = function () {
+                return "Music";
+            }
+        }
+        
+        MusicBox.prototype = new Box();
+        
+        var objMusicBox = new MusicBox();
+
+        debug.innerText = objMusicBox.color + ", " +
+            objMusicBox.play();
+
+    </script>
+</body>
+</html>

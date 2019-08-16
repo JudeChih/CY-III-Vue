@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    <script>
+        var dataList = [10, 20, 30];
+        dataList[4] = 40;
+        
+        // var total = 0;
+        // for (let i = 0; i < dataList.length; i++) {
+        //     if (typeof dataList[i] === "undefined") {
+        //         continue;
+        //     }
+        //     total += dataList[i];
+        //     debug.innerHTML += dataList[i] + "<br>";
+        // }
+        // debug.innerHTML += total;
+        
+        // -------------------------------------------
+        // var total = 0;
+        // for (let i in dataList) {
+        //     // alert(i);  // 0, 1, 2, 4
+        //     total += dataList[i];
+        //     debug.innerHTML += dataList[i] + "<br>";
+        // }
+        // debug.innerHTML += total;
+        
+        var total = 0;
+        for (let data of dataList) {
+            if (typeof data === "undefined") {
+                continue;
+            }
+            total += data;
+            debug.innerHTML += data + "<br>";
+        }
+        debug.innerHTML += total;
+        
+        
+    </script>
+</body>
+</html>

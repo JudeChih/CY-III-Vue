@@ -1,0 +1,27 @@
+# 上課環境之軟體安裝
+
+
+1.  安裝 Git
+    https://git-scm.com/
+
+
+2.  安裝 Node.js
+    https://nodejs.org
+
+
+3.  Visual Studio Code
+    https://code.visualstudio.com/
+
+
+4.  在 Visual Studio Code 安裝套件
+    <Hint>
+    點按 VS Code 左邊側邊工具的第五個(方形那個)圖示，
+    輸入關鍵字，例如: Live
+    Live Server (ritwickdey.liveserver)
+
+
+5.  安裝 XAMPP
+
+    下載並以系統管理員身份執行安裝 XAMPP。下載網址如下:
+    https://www.apachefriends.org/zh_tw/index.html
+

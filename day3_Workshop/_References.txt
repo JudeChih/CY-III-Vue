@@ -1,0 +1,31 @@
+Axios on GitHub
+https://github.com/axios/axios
+
+
+Using Axios to Consume APIs
+https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html
+
+
+Yes or No API
+https://yesno.wtf/api
+
+
+Tree View Example
+https://vuejs.org/v2/examples/tree-view.html
+
+
+Form Input Bindings
+https://vuejs.org/v2/guide/forms.html
+
+
+Form Builder and Generator for Bootstrap
+https://bootsnipp.com/forms
+
+
+7 Ways To Define A Component Template in Vue.js
+https://vuejsdevelopers.com/2017/03/24/vue-js-component-templates/
+
+
+Lifecycle Diagram
+https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram
+

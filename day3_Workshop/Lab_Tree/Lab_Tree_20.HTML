@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <ul id="lab">
+        <tree-item v-bind:item="itemData"></tree-item>
+    </ul>
+        
+    <script type="text/x-template" id="item-template">
+        <li>
+            <div>{{item.text}}</div>
+            <ul>                
+            </ul>
+        </li>
+    </script>
+
+    <script>
+        Vue.component('tree-item', {
+            template: '#item-template',
+            props: ['item']
+        });
+
+        var labApp = new Vue({
+            el: '#lab',
+            data: {
+                itemData: { 
+                    text: "root",
+                    children: [
+                        { 
+                            text: "A",
+                            children: [
+
+                            ]
+                        },
+                        { 
+                            text: "B",
+                            children: [
+                                { text: "B-1", children: [] },
+                                { text: "B-2", children: [] },
+                                { text: "B-3", children: [] }
+                            ]
+                        },
+                        { 
+                            text: "C",
+                            children: [
+
+                            ]
+                        }
+                    ]
+                }
+            }
+        })        
+    </script>
+
+</body>
+
+</html>

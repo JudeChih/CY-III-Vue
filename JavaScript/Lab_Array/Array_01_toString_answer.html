@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Array</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+    <input type="button" id="test" value="click me to test your code" />
+    <div id="report"></div>
+
+<script>
+
+test.onclick = function () {
+    // 將整個陣列的內容串成文字
+    // ------------------------
+    // 參考資料: 
+    // https://www.w3schools.com/jsref/jsref_tostring_array.asp
+    // 
+    // 任務: 
+    // 請寫程式，以 report 那個 div 顯示陣列的內容
+
+    var data = [3, 0, 1, 8, 7, 2, 5, 4, 9, 6];
+
+    // 你的任務程式...
+
+    // report.innerText = data.toString();
+    // 或者
+    report.innerText = data.join(" | ");
+
+
+}  // end of test.onclick
+
+</script>
+
+</body>
+</html>

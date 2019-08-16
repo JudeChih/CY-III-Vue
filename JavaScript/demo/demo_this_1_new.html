@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    <script>
+        // this 指向「以 new 建立的新物件」
+    
+        function Box() {
+            this.color = "black";
+        }
+        
+        var box1 = new Box();
+        var box2 = new Box();
+        box2.color = "red";
+
+        debug.innerText = box1.color + ", " + box2.color;
+
+    </script>
+</body>
+</html>

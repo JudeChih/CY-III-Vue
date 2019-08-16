@@ -1,0 +1,204 @@
+Lab: 練習使用 jQuery 的 AJAX 功能
+
+
+
+1.	設定與執行 Server 程式
+
+
+1.1	在 VS Code 按下 Ctrl + ` 組合鍵以啟動TERMINAL終端機視窗
+
+1.2 切換資料夾到 Lab_AJAX_Node.js 資料夾
+    cd Lab_AJAX_Node.js
+
+1.3 依序輸入下列指令並按下 <Enter> 鍵來安裝 Node.js 套件:
+npm install cors
+npm install express
+npm install body-parser
+    
+	<Note>
+	完成後，在 Lab_AJAX_Node.js 的 node_modules 資料夾裏頭
+	應該會多出 cors、 express、 body-parser 等資料夾。
+
+
+1.4	輸入下列指令以啟動 Web:
+node app.js
+
+
+1.5 以瀏覽器連接 http://localhost/hello/你的名字
+    例如: http://localhost/hello/Chien
+
+    <Note> Serve 端會延遲三秒鐘才回應 Hello! 你的名字
+
+
+
+
+2.	AJAX 觀念
+
+
+2.1	在瀏覽器連接 http://localhost/
+    
+    <Note> 你看到的是 Lab_AJAX_Node.js/public/index.html
+
+
+2.2	確定目前是 Concept 頁籤
+
+
+2.3	在 Your name 輸入你的名字，點按「Hello」按鈕
+	<Note>點按「Hello」按鈕後，會有三秒鐘時間，完全無法輸入其他資料。
+
+
+2.4	在 Your name 輸入你的名字，點按「Hello (AJAX)」按鈕
+	<Note>這回，在與伺服器資料交換期間，仍然可以輸入其他資料。
+
+
+2.5	如果你是使用者，會比較歡迎哪一種作法?
+
+
+(Optional)
+2.6	閱讀 js/ajax_concept.js 的程式
+
+
+
+
+3.	使用 jQuery 的 $.get() 方法
+
+
+3.1	閱讀 https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
+	有關於「jQuery $.get() Method」的使用說明。
+
+
+3.2	以 HTML Editor 開啟 public/index.html
+
+
+3.3	在 public/index.html 的檔案底端，找出針對 getButton 的 click 事件，
+	修改程式：
+	- 呼叫 jQuery 的 get() 方法，
+	- 傳送使用者輸入的人名給伺服器的 /hello 服務，
+	- 將伺服器傳回的結果顯示於 reportSpan　
+	參考寫法:
+
+            $("#getButton").on("click", function() {
+                var s = $("#nameTextBox").val();
+
+                $.get("/hello/" + s, function(e) {
+                    $("#reportSpan").text(e);
+                })
+
+            })
+
+
+3.4	儲存檔案，以瀏覽器測試看看。
+
+
+
+4.	使用 jQuery 的 $.post() 方法
+
+
+4.1	閱讀 https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
+	有關於「jQuery $.post() Method」的使用說明。
+
+
+4.2	以 HTML Editor 開啟 public/index.html
+
+
+4.3	在 public/index.html 的檔案底端，找出針對 postButton 的 click 事件，
+	修改程式：
+	- 呼叫 jQuery 的 post() 方法，
+	- 傳送使用者輸入的人名給伺服器的 /test 服務，
+	- 將伺服器傳回的結果顯示於 resultSpan　
+	參考寫法:
+
+            $("#postButton").on("click", function() {
+                var dataToServer = {
+                    firstName: $("#firstNameTextBox").val(),
+                    lastName: $("#lastNameTextBox").val()
+                }
+                $.post("/test", dataToServer,
+                    function(e) {
+                        $("#resultSpan").text(e);
+                    }
+                )
+            })
+
+
+4.4	儲存檔案，以瀏覽器測試看看。
+
+
+
+
+5.	使用 jQuery 的 $.ajax() 方法
+
+
+5.1	閱讀 https://www.w3schools.com/jquery/ajax_ajax.asp
+	有關於 $.ajax() 的使用說明。
+
+
+5.2	以 HTML Editor 開啟 public/index.html
+
+
+5.3	在 public/index.html 的檔案底端，找出針對 postButton 的 click 事件，
+	修改程式：
+	- 呼叫 jQuery 的 ajax() 方法，
+	- 傳送使用者輸入的人名給伺服器的 /test 服務，
+	- 將伺服器傳回的結果顯示於 resultSpan　
+	參考寫法:
+
+            $("#postButton").on("click", function() {
+                var dataToServer = {
+                    firstName: $("#firstNameTextBox").val(),
+                    lastName: $("#lastNameTextBox").val()
+                }
+
+                $.ajax({
+                    type: "post",
+                    url: "/test",
+                    data: dataToServer,
+                    success: function(e) {
+                        $("#resultSpan").text(e);
+                    }
+                })
+            })
+
+
+5.4	儲存檔案，以瀏覽器測試看看。
+
+
+5.5	假設某位工程師將上述功能寫成下列這樣，為什麼無法執行呢?
+	<Hint> 提示，請查一下有關於 contentType 的說明。
+	
+            $("#postButton").on("click", function() {
+                var dataToServer = {
+                    firstName: $("#firstNameTextBox").val(),
+                    lastName: $("#lastNameTextBox").val()
+                }
+
+                $.ajax({
+                    type: "post",
+                    url: "/test",
+                    data: JSON.stringify(dataToServer),
+                    success: function(e) {
+                        $("#resultSpan").text(e);
+                    }
+                })
+            })
+
+5.6	參考答案：
+	
+            $("#postButton").on("click", function() {
+                var dataToServer = {
+                    firstName: $("#firstNameTextBox").val(),
+                    lastName: $("#lastNameTextBox").val()
+                }
+
+                $.ajax({
+                    type: "post",
+                    url: "/test",
+                    data: JSON.stringify(dataToServer),
+                    contentType: "application/json",
+                    success: function(e) {
+                        $("#resultSpan").text(e);
+                    }
+                })
+            })
+
+

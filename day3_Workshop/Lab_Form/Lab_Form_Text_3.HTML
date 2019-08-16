@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <form class="form-horizontal" id="lab">
+        <fieldset>
+        
+        <!-- Form Name -->
+        <legend>Form Name</legend>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="title">Text:</label>  
+          <div class="col-md-4">
+          <input v-model.lazy="title" id="title" name="title" type="text" placeholder="" class="form-control input-md">
+            
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="price">Price:</label>  
+          <div class="col-md-4">
+          <input v-model="price" id="price" name="price" type="number" placeholder="" class="form-control input-md">
+            
+          </div>
+        </div>
+        
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="description">Description</label>
+          <div class="col-md-4">                     
+            <textarea v-model="description" class="form-control" id="description" name="description"></textarea>
+          </div>
+        </div>
+        </fieldset>
+
+        <hr>
+        <h3 v-html="title">{{title}}</h3>
+        <h3>{{price}}</h3>
+        <div v-html="htmlLineBreak"></div>
+      </form>
+        
+
+<script>
+
+var labApp = new Vue({
+  el: "#lab",
+  data: {
+    title: "Lazy binding",
+    price: 0,
+    description: "line1\nline2"
+  },
+  computed: {
+    htmlLineBreak() {
+      return this.description.replace(/\r\n|\r|\n/g,"<br />");
+    }
+  }
+});
+
+
+</script>
+
+</body>
+</html>

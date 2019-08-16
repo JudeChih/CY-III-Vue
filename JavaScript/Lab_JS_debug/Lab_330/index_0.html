@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .task-description,
+        .list-group {
+            font-size: 1.25em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="page-header">
+            <h1>JavaScript 除錯練習</h1>
+        </div>
+
+        <p class="task-description">
+            為什麼陣列的內容清不乾淨呢?
+        </p>
+
+        <div id="report"></div>
+
+    </div>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script>
+    
+    function emptyArray(source) {
+        var i = 0;
+        var arrayLength = source.length;
+        for (i = 0; i < arrayLength; i++) {
+            source.splice(i, 1);
+        }
+    }
+    
+    var data = [0, 10, 20, 30, 40, 50, 60];
+    
+    emptyArray(data);
+    
+    report.innerHTML = JSON.stringify(data);
+
+    </script>
+
+</body>
+
+</html>

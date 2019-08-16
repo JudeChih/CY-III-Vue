@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .task-description,
+        .list-group {
+            font-size: 1.25em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="page-header">
+            <h1>JavaScript 除錯練習</h1>
+        </div>
+
+        <p class="task-description">
+            承上例。除了事前檢查，聽說也有 try..catch 這種等到錯誤發生再行處理的寫法。
+        </p>
+
+        <ul id="latestNews" class="list-group">
+            <li class="list-group-item">請先聽錢老師說明如何使用 try..catch 語法</li>
+            <li class="list-group-item">修改程式: 當程式出錯時，如何繼續? 意思是說，雖然第四封有問題，但其他的信還是要繼續往下寄完?</li>
+        </ul>
+
+        <div id="report"></div>
+
+    </div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+<script>
+    
+    var mailList = [
+        "jeremy.lin@gmail.com", 
+        "derek.jeter@gmail.com",
+        "chien-ming.wang@gmail.com",
+        undefined,
+        "lionel.messi@gmail.com"
+        ];
+    
+    function sendMail(mailAddress) {
+        $("#report").append(mailAddress.toString() + "<br>");
+    }
+    
+    for (i = 0; i < mailList.length; i++) {
+        sendMail(mailList[i]);
+    }
+    
+    
+    
+</script>
+
+</body>
+
+</html>

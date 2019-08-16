@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .task-description,
+        .list-group {
+            font-size: 1.25em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="page-header">
+            <h1>JavaScript 除錯練習</h1>
+        </div>
+
+        <p class="task-description">
+            請找出 JavaScript 的語法錯誤。提示:
+        </p>
+
+        <ul id="latestNews" class="list-group">
+            <li class="list-group-item">JavaScript引用外部檔案的語法: <a href="https://www.w3schools.com/Js/js_whereto.asp" target="_blank">w3school</a></li>
+            <li class="list-group-item">c9.io 預設用的是 https，不是 http 喔</li>
+        </ul>
+
+        <p class="task-description">除錯完成之後，你應該會在下一行看到目前時間:</p>
+        <div id="report"></div>
+
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script src="currentTime.js" />
+
+</body>
+
+</html>

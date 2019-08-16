@@ -1,0 +1,61 @@
+Lab: 以 Node.js 建構 Web API
+
+
+1.  執行下列 SQL Script 以建立本次練習所需的資料庫。
+
+
+create database labDB default character set utf8;
+use labDB;
+create table news
+(
+  newsId int auto_increment not null primary key,
+  ymd char(10),
+  title varchar(50)
+);
+insert into news (ymd, title) values 
+  ('2017-05-01', 'News A'),
+  ('2017-05-02', 'News B'),
+  ('2017-05-03', 'News C'),
+  ('2017-05-04', 'News D'),
+  ('2017-05-05', 'News E');
+select * from news;
+
+
+
+
+2.  滑鼠右鍵 Lab_WebAPI 資料夾 | Open in Terminal，
+	輸入下列指令以安裝/更新本程式所需的模組:
+
+npm install express
+npm install cors
+npm install body-parser
+npm install express-session
+npm install ejs
+npm install mysql
+exit
+
+
+
+
+3.  啟動 Web Server 程式
+
+
+3.1 點兩下 app.js 開啟檔案，檢視其中的程式與註解
+	<Note>必要時，改寫連線資料庫的帳號與密碼
+
+
+3.2 滑鼠右鍵 Lab_WebAPI 資料夾 | Open in Terminal，
+	輸入 node app.js 以執行程式。
+
+
+3.3 在瀏覽器連接 http://localhost
+	試用本系統各項增查修刪功能
+
+
+
+
+4.	Web API 那邊暫且不動，
+    請針對前端這部分，以 Vue.js 實作出相同的功能
+
+
+

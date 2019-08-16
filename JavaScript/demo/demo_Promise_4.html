@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <div id="debug"></div>
+        
+        <script>
+
+            function longTimeWork() {
+                return new Promise(function (success, fail) {
+                    // ...
+                    if (true) {
+                        success(400);
+                    }
+                    else {
+                        fail(-400);
+                    }
+                })
+            }
+            
+            longTimeWork().then(function (e) {
+                debug.innerHTML += "success: " + e + "<br>";
+            })
+            
+            debug.innerHTML += "Done<br>";
+            
+            
+        </script>
+        
+    </body>
+</html>

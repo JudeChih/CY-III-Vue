@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Array</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+    <input type="button" id="test" value="click me to test your code" />
+    <div id="report"></div>
+
+<script>
+
+test.onclick = function () {
+    // 添加元素到陣列的末尾
+    // --------------------
+    // 參考資料: 
+    // https://www.w3schools.com/jsref/jsref_push.asp
+    // 
+    // 任務: 
+    // 請寫程式，新增數字 10 到陣列的末尾
+
+    var data = [3, 0, 1, 8, 7, 2, 5, 4, 9, 6];
+
+    // 你的任務程式...
+    data[data.length] = 10;
+    // 或者:
+    // data.push(10)
+
+
+    report.innerText = data.toString();
+
+
+}  // end of test.onclick
+
+</script>
+
+</body>
+</html>

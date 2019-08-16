@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    <script>
+        
+        var obj = {};
+        obj.sayHello = function () {
+            alert("Hello!");
+        }
+        
+        obj.sayHi = function () {
+            alert("Hi!")
+        }
+        
+        // obj.123 = function.... XXX error
+        // obj["123"] = function ... OOO OK
+        
+        var s = "say" + "Hello"; // textBox1.value;
+        
+        // if (s == "sayHello") {
+        //     obj.sayHello()
+        // }
+        // else if (s == "sayHi") {
+        //     obj.sayHi();
+        // }
+        
+        // obj["sayHi"]
+        obj[s]();
+        
+    </script>
+</body>
+</html>

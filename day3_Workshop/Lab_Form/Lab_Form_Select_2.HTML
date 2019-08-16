@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <form class="form-horizontal" id="lab">
+        <fieldset>
+        
+        <!-- Form Name -->
+        <legend>Lab Form</legend>
+        
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="city">城市:</label>
+          <div class="col-md-4">
+            <select id="city" v-model="city" name="city" class="form-control">
+              <option value="2">台北</option>
+              <option value="4">台中</option>
+              <option value="6">台南</option>
+            </select>
+          </div>
+        </div>
+        
+        </fieldset>
+        <h3>{{city}}</h3>
+    </form>
+               
+
+<script>
+
+var labApp = new Vue({
+  el: "#lab",
+  data: {
+    city: 6
+  }
+})
+
+</script>
+
+</body>
+</html>

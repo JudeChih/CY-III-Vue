@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="app" v-bind:style="{ fontSize: fontSizeSetting + 'px' }">
+        Font size: {{ fontSizeSetting }}
+        <button v-on:click="fontSizeSetting++">
+            Increase font size
+        </button>
+        <button v-on:click="fontSizeSetting--">
+            Decrease font size
+        </button>
+    </div>
+    <script>
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "Hello!",
+                fontSizeSetting: 30
+            }
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>

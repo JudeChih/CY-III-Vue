@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .task-description,
+        .list-group {
+            font-size: 1.25em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="page-header">
+            <h1>JavaScript 除錯練習</h1>
+        </div>
+
+        <p class="task-description">
+            下列運算式的值分別是多少:
+        </p>
+        
+        <ul id="latestNews" class="list-group">
+            <li class="list-group-item"> 6 + "2" </li>
+            <li class="list-group-item"> 6 - "2" </li>
+            <li class="list-group-item"> 6 + parseInt("0xa") </li>
+        </ul>
+
+
+        <button id="btnTest">點我一下，看答案。</button>
+        <div id="report"></div>
+
+    </div>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script>
+    
+
+    btnTest.onclick = function () {
+        var x = 6 + "2";
+        var y = 6 - "2";
+        var z = 6 + parseInt("0xa");
+        report.innerHTML = 
+          '6 + "2"  ==> ' + x + "<br>" +
+          '6 - "2"  ==> ' + y + "<br>" +
+          '6 + parseInt("0xa")  ==> ' + z
+    }
+
+    </script>
+
+</body>
+
+</html>

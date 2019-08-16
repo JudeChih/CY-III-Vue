@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        
+        <button id="tryit">What is Promise</button>
+        <div id="debug">...</div>
+        <script>
+        
+
+            function longTimeWork(duration) {
+                return new Promise(function(resolve, reject) {
+                    setTimeout(resolve, duration);
+                });
+            }
+            
+            tryit.onclick = function () {
+                var m = longTimeWork(3000).then(() => {
+                    debug.innerText = "Done";
+                })
+                debug.innerText = "Processing...";
+            }
+            
+            
+        </script>
+    </body>
+</html>

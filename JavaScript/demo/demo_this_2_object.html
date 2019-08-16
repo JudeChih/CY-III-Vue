@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    
+    <script>
+        // 物件.函式()
+        // this 指向「使用該函式的物件」
+        
+        function showFullName() {
+            debug.innerText = this.firstName + " " + this.lastName;
+        }
+        
+        var chien = {
+            firstName: "Wolfgang",
+            lastName: "Chien",
+            toString: showFullName
+        }
+        
+        var lin = {
+            firstName: "Jeremy",
+            lastName: "Lin",
+            toString: showFullName
+        }
+        
+        // lin.toString();
+        chien.toString();
+        
+    </script>
+    
+</body>
+</html>
+
+

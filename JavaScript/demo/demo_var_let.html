@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    <script>
+        var data = 3;
+        // .. ....
+        var data = 33;
+        
+        function test() {
+            let x = 100;
+            // let x = 101; // Syntax error
+            if (x > 0) {
+                let y = x;
+                alert(y);
+            }
+            // alert(y); // error
+            
+            for (let i = 1; i <= 3; i++) {
+                alert(i);
+            }
+            // alert(i);
+
+            data = x;
+        }
+        
+        test();
+        
+        debug.innerHTML = "data = " + data;
+        
+        
+    </script>
+</body>
+</html>

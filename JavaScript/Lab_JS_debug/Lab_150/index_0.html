@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .task-description,
+        .list-group, .well pre, #report {
+            font-size: 1.25em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="page-header">
+            <h1>JavaScript 除錯練習</h1>
+        </div>
+
+        <p class="task-description">
+            下列程式分別會輸出什麼內容呢?
+        </p>
+        
+        <div class="well">
+<pre>
+function doWork(anInt, anArray, anObject) {
+    anInt = 11;
+    anArray.push("three");
+    anObject.data = 101;
+}
+
+var iAmInt = 10;
+var iAmArray = ["zero", "one", "two"];
+var iAmObject = { data: 100 };
+
+doWork(iAmInt, iAmArray, iAmObject);
+
+report.innerHTML =
+  iAmInt.toString() + "&lt;br&gt;" +
+  iAmArray.toString() + "&lt;br&gt;" +
+  JSON.stringify(iAmObject)
+</pre>
+        </div>        
+
+        <button id="btnTest">點我一下，看答案。</button>
+        <div id="report"></div>
+
+    </div>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script>
+    
+    function doWork(anInt, anArray, anObject) {
+        anInt = 11;
+        anArray.push("three");
+        anObject.data = 101;
+    }
+
+    btnTest.onclick = function () {
+        var iAmInt = 10;
+        var iAmArray = ["zero", "one", "two"];
+        var iAmObject = { data: 100 };
+        
+        doWork(iAmInt, iAmArray, iAmObject);
+        
+        report.innerHTML =
+          iAmInt.toString() + "<br>" +
+          iAmArray.toString() + "<br>" +
+          JSON.stringify(iAmObject)
+    }
+
+    </script>
+
+</body>
+
+</html>

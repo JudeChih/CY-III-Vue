@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    
+    <script>
+        // 單純的函式呼叫，不是物件.方法()這種型式
+        // this 指向「全域物件(window, GLOBAL)」
+        
+        function showLocation() {
+            debug.innerText = this.location;
+        }
+        
+        showLocation();
+        
+    </script>
+    
+</body>
+</html>
+
+

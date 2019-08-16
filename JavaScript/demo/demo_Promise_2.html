@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <div id="debug"></div>
+        
+        <script>
+
+
+            function longTimeWork(success, fail) {
+                if (true) {
+                    success(200);
+                }
+                else {
+                    fail(-200);
+                }
+            }
+            
+            longTimeWork(e => {
+                debug.innerHTML += "success: " + e + "<br>";
+            }, function (e) {
+                debug.innerHTML += "success: " + e + "<br>";
+            })
+            debug.innerHTML += "Done<br>";
+
+
+
+            
+        </script>
+        
+    </body>
+</html>

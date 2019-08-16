@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    <script>
+        
+        var data = 102;
+        
+        function test(data) {
+            // var data;
+            data = 200;
+        }       
+        
+        var x = 300;
+        test(x);
+        
+        debug.innerText = `data = ${data}, 
+        x = ${x} `;
+        // debug.innerText = "data = " + data + ", x =" + x;
+    </script>
+</body>
+</html>

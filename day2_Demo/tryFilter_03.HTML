@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- http://blog.stevenlevithan.com/archives/date-time-format -->
+    <script src="date.format.js"></script>
+</head>
+<body>
+    <div id="lab">
+        日期: {{ dateData | dateFormatFilter('yyyy-mm-dd HH:MM:ss') }}
+    </div>
+
+<script>
+    Vue.filter('dateFormatFilter', function (value, formatStr) {
+        return value.format(formatStr);
+    });
+
+    var labApp = new Vue({
+        el: "#lab",
+        data: {
+            dateData: new Date()
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

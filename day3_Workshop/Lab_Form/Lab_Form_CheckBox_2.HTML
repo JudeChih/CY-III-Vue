@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <form class="form-horizontal" id="lab">
+        <fieldset>
+        
+        <!-- Form Name -->
+        <legend>Lab Form</legend>
+        
+        <!-- Multiple Checkboxes -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="cities">城市:</label>
+          <div class="col-md-4">
+          <div class="checkbox">
+            <label for="cities-0">
+              <input type="checkbox" v-model="cities" name="cities" id="cities-0" value="2">
+              台北
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="cities-1">
+              <input type="checkbox" v-model="cities" name="cities" id="cities-1" value="4">
+              台中
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="cities-2">
+              <input type="checkbox" v-model="cities" name="cities" id="cities-2" value="6">
+              台南
+            </label>
+          </div>
+          </div>
+        </div>
+        
+        </fieldset>
+        <h3>{{cities}}</h3>
+    </form>
+        
+
+<script>
+
+var labApp = new Vue({
+  el: "#lab",
+  data: {
+    cities: [ "2", "6" ]
+  }
+})
+
+</script>
+
+</body>
+</html>

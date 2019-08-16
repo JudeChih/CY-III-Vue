@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    <script>
+    
+        function nextNumber() {
+            var lastNumber = 0;
+            lastNumber++;
+            return lastNumber;
+        }
+        
+        var number = 0;
+        
+        number = nextNumber();
+        number = nextNumber();
+        number = nextNumber();
+
+        debug.innerText = number;
+    </script>
+</body>
+</html>

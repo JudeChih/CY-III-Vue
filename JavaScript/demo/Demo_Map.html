@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+    <div id="debug"></div>
+    <script>
+        
+        var dataList = new Map();
+        dataList.set("firstName", "Jeremy");
+        // alert(dataList.get("firstName"));
+        dataList.set("lastName", "Lin");
+        
+        // for (let x of dataList.keys()) {
+        //     debug.innerHTML += `${x}<br>`;
+        // }
+        // for (let x of dataList.values()) {
+        //     debug.innerHTML += `${x}<br>`;
+        // }        
+        
+        for (let [key, value] of dataList) {
+            debug.innerHTML += `${key} = ${value} <br>`;
+        }
+
+        
+    </script>
+</body>
+</html>

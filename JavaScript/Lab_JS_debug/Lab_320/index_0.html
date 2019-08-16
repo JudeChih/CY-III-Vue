@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lab</title>
+</head>
+<body>
+    <h3>除錯任務：為何右邊的框框沒有出現圖片?</h3>
+
+<!--rabbit_240x200.jpeg 圖片，依 CC0 授權，可免費使用，下載網址如下:-->
+<!--https://www.pexels.com/photo/brown-rabbit-53966/-->
+
+    <img id="imgRabbit"  src="rabbit_240x200.jpeg" />
+
+    <canvas id="canvasLab" width="240" height="200"
+            style="border:1px solid #000000;"></canvas>
+
+
+    <script>
+
+            var c = document.getElementById("canvasLab");
+            var ctx = c.getContext("2d");
+
+            ctx.arc(120, 100, 90, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.clip();
+            ctx.drawImage(imgRabbit, 0, 0);
+
+        
+    </script>
+
+</body>
+</html>

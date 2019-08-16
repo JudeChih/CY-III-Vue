@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .task-description,
+        .list-group {
+            font-size: 1.25em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="page-header">
+            <h1>JavaScript 除錯練習</h1>
+        </div>
+
+        <p class="task-description">
+            郵寄地址的清單有錯誤，這樣子應該寄不成吧!
+        </p>
+
+        <ul id="latestNews" class="list-group">
+            <li class="list-group-item">有項目缺資料，undefined</li>
+            <li class="list-group-item">sendMail() 函式的 if 寫法不對，應該怎麼改呢?</li>
+        </ul>
+
+        <div id="report"></div>
+
+    </div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+<script>
+    
+    var mailList = [
+        "jeremy.lin@gmail.com", 
+        "derek.jeter@gmail.com",
+        "chien-ming.wang@gmail.com",
+        undefined,
+        "lionel.messi@gmail.com"
+        ];
+    
+    function sendMail(mailAddress) {
+        // if (mailAddress != undefined) {
+        //     $("#report").append("資料有缺<br>");
+        //     return;
+        // }
+        $("#report").append(mailAddress.toString() + "<br>");
+    }
+    
+    for (i = 0; i < mailList.length; i++) {
+        sendMail(mailList[i]);
+    }
+    
+    
+    
+</script>
+
+</body>
+
+</html>

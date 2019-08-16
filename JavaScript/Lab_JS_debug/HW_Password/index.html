@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery.js"></script>
+<script src="js/seedrandom.js"></script>
+<style>
+#randomTable {
+    font-family: monospace;
+    font-size: 2.0em;
+}
+</style>
+</head>
+<body>
+
+請輸入亂數表的編號：<input type="text" id="txtSeed" value="1234" />
+&nbsp;<input type="button" id="btnGo" value="產生亂數表" />
+
+<div id="randomTable">
+</div>
+
+<script>
+
+$("#btnGo").click(function () {
+    var result = "";
+	// 純數字:
+	var sPool = "0123456789";
+    // 數字+小寫字母: (去除 l, o)
+    // var sPool = "abcdefghijkmnpqrstuvwxyz0123456789";
+    // 數字+大小寫字母: (去除 I, O, l, o)
+    // var sPool = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz0123456789";
+
+    Math.seedrandom($("#txtSeed").val()); // 設定亂數種子
+	var iRandom = 0; var ch = "?";
+	for (iRow = 1; iRow <= 10; iRow++) {
+		var sLine = (iRow + 100).toString().substr(1, 2) + ": ";
+		for (iCol = 1; iCol <= 10; iCol++) {
+			iRandom = Math.floor(Math.random() * sPool.length);
+			ch = sPool.substr(iRandom, 1);
+			sLine += ch;
+		}
+		result += sLine + "<br>";
+	}
+	$("#randomTable").html(result);
+});
+
+</script>
+
+</body>
+</html>

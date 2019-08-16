@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .blueStyle {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" 
+        v-bind:class="{ blueStyle: isBlueStyle }"
+        v-bind:style="{ fontSize: fontSizeSetting + 'px' }">
+        Font size: {{ fontSizeSetting }}
+    </div>
+    <button onclick="app.fontSizeSetting++">
+        Increase font size
+    </button>
+    <button onclick="app.fontSizeSetting--">
+        Decrease font size
+    </button>
+    <script>
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "Hello!",
+                isBlueStyle: true,
+                fontSizeSetting: 30
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>

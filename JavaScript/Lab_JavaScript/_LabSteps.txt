@@ -1,0 +1,493 @@
+﻿Lab: JavaScript 語法練習
+
+請以下列程式碼取代 JS_Exercise.htm 的 <script>...</script> 區塊，
+存檔之後，瀏覽 JS_Exercise.htm 依指示測試程式並回答問題。
+
+
+
+________________________________________________________________________________
+// 110	變數名稱的大小寫有差嗎?
+// 請將其中一個  userName 改成  UserName 看看。
+// <Note>什麼是 Camel 命名法?
+
+<script>
+
+function Button1_onclick() {
+  
+	var userName = txt1.value;
+	userName = "Hello! " + userName;
+	txt2.value = userName;
+  
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 120	寫不寫 var 差在哪裏?
+// 第二個 var (function 裏頭那個)那行，如果不寫 var，有差嗎?
+// 
+
+<script>
+
+var data = "Global Data";
+
+function Button1_onclick() {
+	  
+	var data = "local data";
+	txt1.value = window.data;
+	txt2.value = data;
+  
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 130	數值資料（一）
+// ABCD 哪一個的執行結果其他三者不同?
+
+<script>
+
+function Button1_onclick() {
+	var nTest;
+	// nTest = new Number("122.5") + 1  // A
+	// nTest = new Number(122.5) + 1  // B
+	// nTest = 122.5 + 1  // C
+	// nTest = "122.5" + 1  // D
+
+	txt2.value = nTest;
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 140	數值資料（二）
+// A, B 的結果分別是什麼?
+
+<script>
+
+function Button1_onclick() {
+	var x = 0.1;
+	var y = 0.2;
+	txt1.value = x + y;  // A
+	txt2.value = (x * 10000 + y * 10000) / 10000  // B
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 150	常用字串處理函式（一）
+// A, B 的結果分別是什麼?
+
+<script>
+
+function Button1_onclick() {
+	// var s = new String("0123456789中文字");
+	var s = "0123456789中文字"
+	txt1.value = s.length;  // A
+	txt2.value = s.substr(2, 5);  // B
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 160	常用字串處理函式（二）
+// A, B 的結果分別是什麼?
+
+<script>
+
+function Button1_onclick() {
+	// var s = new String("0123456789中文字");
+	var s = "0123456789中文字"
+	txt1.value = s.indexOf("567");  // A
+	txt2.value = s.indexOf("543");  // B
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 210	if 敘述（二）
+// 執行結果是 found 還是 not found?
+
+<script>
+
+function Button1_onclick() {
+	var s = "0123456789中文字";
+	var position = s.indexOf("567");
+	if (position >= 0) {
+		txt1.value = "found";	
+	}
+	else {
+		txt1.value = "not found";
+	}
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 220	if 敘述（二）
+// ABCDE 哪一個寫法的結果會顯示「Yes」?
+
+<script>
+
+function Button1_onclick() {
+	// var test = true;   // A
+	// var test = 0;      // B
+	// var test = 3 > 0;  // C
+	// var test = "";     // D
+	// var test = null;   // E
+	
+	if (test) {
+		txt1.value = "Yes";	
+	}
+	else {
+		txt1.value = "No";
+	}	
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 230	迴圈敘述（一）
+// 請觀察比較 A 與 B 的寫法。
+
+<script>
+
+function Button1_onclick() {
+	// A
+	var line = "";
+	var i = 1;
+	while (i <= 5) {
+		line = line + i.toString();
+		i = i + 1;
+	}
+	txt1.value = line;	
+	
+	// B
+	var line = "";
+	for (var i = 1; i <= 5; i++) {
+		line = line + i.toString();
+	}
+	txt2.value = line;
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 240	迴圈敘述（二）
+// continue 與 break 有何不同?
+// if 敘述內的 i += 1 若省略不寫，會怎樣呢?
+
+<script>
+
+function Button1_onclick() {
+	// A
+	var line = "";
+	var i = 1;
+	while (i <= 5) {
+		if (i == 4) {
+			i += 1;
+			continue;
+		}
+		line = line + i.toString();
+		i = i + 1;
+	}
+	txt1.value = line;	
+
+
+	// B
+	var line = "";
+	var i = 1;
+	while (i <= 5) {
+		if (i == 4) {
+			i += 1;
+			break;
+		}
+		line = line + i.toString();
+		i = i + 1;
+	}
+	txt2.value = line;	
+
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 250	函數(function)
+// 請比較看看  A 與 B 的寫法?
+
+<script>
+
+function Button1_onclick() {
+	// A
+	var line = "";
+	for (var i = 1; i <= 5; i++) {
+		line = line + "*";
+	}
+	txt1.value = line;
+	
+	// B
+	txt2.value = getLine(3, "*");
+}
+
+function getLine(count, what) {
+	var line = "";
+	for (var i = 1; i <= count; i++) {
+		line = line + what;
+	}
+	return line;
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 310	以 JavaScript 存取網頁內容
+// 請問 innerText 與 innerHTML 有何不同?
+
+<script>
+
+function Button1_onclick() {
+	debug.innerText = "line1<br>line2<br>";  // A
+	// debug.innerHTML = "line1<br>line2<br>";  // B
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 320	陣列（一）
+// 請觀察  A 與 B 的寫法。
+// 請問寫成 seasons.length 還是直接寫 4 比較好呢?
+
+<script>
+
+function Button1_onclick() {
+	// var seasons = new Array("春", "夏", "秋", "冬");  // A
+	var seasons = ["春", "夏", "秋", "冬"];  // B
+
+	seasons[3] = "暖冬"; 
+
+	var result = "";
+
+	for (var i = 0; i < seasons.length; i++) {
+		result += seasons[i] + "<br>";
+	}
+
+	debug.innerHTML = result;
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 330	陣列（二）
+// 執行結果是什麼？
+// JavaScript的陣列長度是固定的嗎？
+
+<script>
+
+function Button1_onclick() {
+	// var seasons = new Array("春", "夏", "秋", "冬");  // A
+	var seasons = ["春", "夏", "秋", "冬"];  // B
+
+	seasons[9] = "怪怪天氣"; 
+
+	var result = "";
+
+	for (var i = 0; i < seasons.length; i++) {
+		result += seasons[i] + "<br>";
+	}
+
+	debug.innerHTML = result;
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 340	物件（一）
+// 請觀察 A 與 B 的寫法
+// this 是什麼? 
+
+<script>
+
+function Button1_onclick() {
+	var obj = new Object();  // A
+	var obj = {};  // B
+	obj.firstName = "Wolfgang";
+	obj.lastName = "Chien";
+	obj.sayHello = function () {
+		debug.innerHTML += "Hello! I'm " + this.lastName + "<br>";	
+	};
+	
+	debug.innerHTML = obj.firstName + "<br>";
+
+	obj.sayHello();
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 350	物件（二）
+// 請觀察這種寫法：
+
+<script>
+
+function Button1_onclick() {
+	var obj = {
+		"firstName": "Wolfgang",
+		"lastName": "Chien"
+	};
+	debug.innerHTML = obj.firstName + " " + obj.lastName;
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 410	JSON （掃瞄記憶體內容，擷取出 JSON 格式的字串）
+// 請閱讀 A 段程式的寫法，試著在紙上畫出你對於該資料結構的想像。
+// 觀察程式的執行結果。
+
+<script>
+
+function Button1_onclick() {
+	// A. 物件陣列，用中括號框住一組以 JSON 格式表現的物件
+	var objArray = [
+		{"firstName":"Derek", "lastName":"Jeter"}, 
+		{"firstName":"Jeremy", "lastName":"Lin"}, 
+		{"firstName":"Lionel", "lastName":"Messi"}
+	];
+
+	debug.innerText = JSON.stringify(objArray);
+	// B: [{"firstName":"Derek","lastName":"Jeter"},{"firstName":"Jeremy","lastName":"Lin"},{"firstName":"Lionel","lastName":"Messi"}]
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 420	JSON （將JSON 格式的字串轉換成記憶體資料）
+// 請閱讀  s 字串的內容與格式
+// JSON.stringify() 與 JSON.parse() 的功能是什麼?
+
+<script>
+
+function Button1_onclick() {
+	var s = '[{"firstName":"Derek","lastName":"Jeter"},{"firstName":"Jeremy","lastName":"Lin"},{"firstName":"Lionel","lastName":"Messi"}]';
+	var objArray = JSON.parse(s);
+	debug.innerHTML = objArray[2].lastName + "<br>";
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 510	JavaScipt 的函式也是物件（一）
+
+<script>
+
+function Box() {
+	this.color = 'black';
+	this.paint = function (value) {
+		this.color = value;
+	}
+}
+
+function Button1_onclick() {
+	var objBox = new Box();
+	objBox.paint("Blue");
+	txt2.value = objBox.color;
+}
+
+</script>
+
+
+
+
+________________________________________________________________________________
+// 520	JavaScipt 的函式也是物件（二） -- NameSpace
+// 簡單一點的想法: 就是分類啦!
+
+<script>
+
+var Home = {
+	Box: function () {
+		this.color = 'black';
+		this.paint = function (value) {
+			this.color = value;
+		}
+	}
+		
+}
+
+function Button1_onclick() {
+	var objBox = new Home.Box();
+	objBox.paint("RoyalBlue");
+	txt2.value = objBox.color;
+}
+
+</script>
+
+
+
+________________________________________________________________________________
+// 530	回呼函式 Callback function
+// 想想看，應該要等到上漆完成之後，再去讀取顏色的值，
+// 才是正確的順序，所以，程式改成這樣：
+
+<script>
+
+var Home = {
+	Box: function () {
+		this.color = 'black';
+		this.paint = function (value, cb) {
+			// delay 3 seconds.
+			//var now = new Date().getTime();
+		    //while (new Date().getTime() < now + 3000) { 
+		    //	/* do nothing */ 
+		    //} 
+			this.color = value;
+			cb();
+		}
+	}
+}
+
+function Button1_onclick() {
+	var objBox = new Home.Box();
+	objBox.paint("RoyalBlue", function () {
+		txt2.value = objBox.color;
+	});
+}
+
+</script>
+

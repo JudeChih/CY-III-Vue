@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="lab">
+    First Name: <input type="text" v-model='firstName' > <br>
+    Last Name: <input type="text" v-model='lastName' > <hr>
+    Full Name: {{ fullName }}
+</div>
+
+<script>
+    var labApp = new Vue({
+        el: "#lab",
+        data: {
+            firstName: "",
+            lastName: "",
+            fullName: ""
+        },
+        watch: {
+            firstName: function () {
+                this.fullName = this.firstName + " " + this.lastName
+            },
+            lastName: function () {
+                this.fullName = this.firstName + " " + this.lastName
+            }
+        }
+        
+    })
+
+
+</script>
+
+</body>
+</html>
