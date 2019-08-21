@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!-- 
+  OK: 城市清單以陣列的內容代入 
+  TODO: 如何顯示選到的城市「名稱」?
+-->
 <html>
 <head>
     <meta charset="UTF-8">
@@ -21,29 +25,32 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="city">城市:</label>
           <div class="col-md-4">
-            <select id="city" name="city" v-modal="city" class="form-control">
-              <option v-for="item in cityList" v-bind:value="item.id">{{item.name}}</option>
+            <select id="city" v-model="selectedCity" name="city" class="form-control">
+              <option v-for="aCity in cityList" v-bind:value="{id:aCity.id,text:aCity.text}">{{aCity.text}}</option>
             </select>
           </div>
         </div>
         
         </fieldset>
+        <h3>{{selectedCity.text}}</h3>
+        <input type="submit"  value="OK" >
     </form>
                
-    <h3>{{city}}</h3>
+
 <script>
-var lab = new Vue({
-  el:"#lab",
-  data:{
+
+var labApp = new Vue({
+  el: "#lab",
+  data: {
     city: 4,
-    cityList:[
-      {id:2,name:'台北'},
-      {id:4,name:'台中'},
-      {id:6,name:'高雄'},
+    selectedCity:{id:4,text:"TaiChung"},
+    cityList: [
+      {id: 2, text: "Taipei"},
+      {id: 4, text: "TaiChung"},
+      {id: 6, text: "TaiNan"}
     ]
   }
 })
-
 
 </script>
 

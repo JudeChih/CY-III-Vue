@@ -11,39 +11,51 @@
 </head>
 <body>
 
-    <form class="form-horizontal" id="lab">
+    <form class="form-horizontal" id="lab" method="post" action="echo.php">
         <fieldset>
         
         <!-- Form Name -->
         <legend>Lab Form</legend>
         
+        <input type="hidden" name="city" v-bind:value="selectedCity.id" />
         <!-- Select Basic -->
         <div class="form-group">
           <label class="col-md-4 control-label" for="city">城市:</label>
           <div class="col-md-4">
-            <select id="city" name="city" v-modal="city" class="form-control">
-              <option v-for="item in cityList" v-bind:value="item.id">{{item.name}}</option>
+            <select id="city" v-model="selectedCity" class="form-control">
+              <option v-for="aCity in cityList" v-bind:value="aCity">{{aCity.text}}</option>
             </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="okButton"></label>
+          <div class="col-md-4">
+            <button id="okButton" name="okButton" value="OK" class="btn btn-primary">OK</button>
           </div>
         </div>
         
         </fieldset>
+        <h3>{{selectedCity}}</h3>
+        <hr>
+        city.Name: {{selectedCity.text}}<br>
+        city.id: {{selectedCity.id}}
     </form>
                
-    <h3>{{city}}</h3>
+
 <script>
-var lab = new Vue({
-  el:"#lab",
-  data:{
-    city: 4,
-    cityList:[
-      {id:2,name:'台北'},
-      {id:4,name:'台中'},
-      {id:6,name:'高雄'},
+
+var labApp = new Vue({
+  el: "#lab",
+  data: {
+    selectedCity: {id: 4, text: "TaiChung"},
+    cityList: [
+      {id: 2, text: "Taipei"},
+      {id: 4, text: "TaiChung"},
+      {id: 6, text: "TaiNan"}
     ]
   }
 })
-
 
 </script>
 

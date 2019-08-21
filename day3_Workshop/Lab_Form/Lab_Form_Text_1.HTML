@@ -21,7 +21,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="title">Text:</label>  
           <div class="col-md-4">
-          <input v-model="title" id="title" name="title" type="text" placeholder="" class="form-control input-md">
+          <input v-model.lazy="title" id="title" name="title" type="text" placeholder="" class="form-control input-md">
             
           </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="price">Price:</label>  
           <div class="col-md-4">
-          <input v-model="price" id="price" name="price" type="number" placeholder="" class="form-control input-md">
+          <input v-model.number="price" id="price" name="price" type="number" placeholder="" class="form-control input-md">
             
           </div>
         </div>
@@ -45,9 +45,9 @@
         </fieldset>
 
         <hr>
-        <h3>{{title}}</h3>
-        <h3>{{price}}</h3>
-        <pre>{{description}}</pre>
+        <h3 v-html="title"></h3>
+        <h3>{{price +1}}</h3>
+        <div v-html="desc"></div>
 
       </form>
         
@@ -57,8 +57,14 @@ var lab = new Vue({
   el:"#lab",
   data:{
     title:"ddd",
-    price:"123",
+    price:123,
     description:"怪怪der"
+  },
+  computed:{
+    desc:function(){
+      // regular expression
+      return this.description.replace(/\r\n|\n|\r/g,"<br>");
+    }
   }
 })
 

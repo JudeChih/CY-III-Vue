@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- 
+  OK: 顯示選到的城市「名稱」 
+  TODO: 可是，表單 POST 給 echo.php 時，city 不是數字，怎麼辦?
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <form class="form-horizontal" id="lab" method="post" action="echo.php">
+        <fieldset>
+        
+        <!-- Form Name -->
+        <legend>Lab Form</legend>
+        
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="city">城市:</label>
+          <div class="col-md-4">
+            <select id="city" v-model="city" name="city" class="form-control">
+              <option v-for="aCity in cityList" v-bind:value="aCity">{{aCity.text}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="okButton"></label>
+          <div class="col-md-4">
+            <button id="okButton" name="okButton" value="OK" class="btn btn-primary">OK</button>
+          </div>
+        </div>
+        
+        </fieldset>
+        <h3>{{city}}</h3>
+        <hr>
+        city.Name: {{city.text}}<br>
+        city.id: {{city.id}}
+    </form>
+               
+
+<script>
+
+var labApp = new Vue({
+  el: "#lab",
+  data: {
+    city: {id: 4, text: "TaiChung"},
+    cityList: [
+      {id: 2, text: "Taipei"},
+      {id: 4, text: "TaiChung"},
+      {id: 6, text: "TaiNan"}
+    ]
+  }
+})
+
+</script>
+
+</body>
+</html>
