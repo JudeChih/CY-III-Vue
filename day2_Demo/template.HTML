@@ -8,11 +8,33 @@
 
 </head>
 <body>
-
+    <div id="lab">
+        First Name : <input type="text" v-model="f_name"> <br><br>
+        Last Name : <input type="text" v-model="l_name"> <br><br>
+        Full Name : {{full_name}} <br><br>
+        Updata : {{update}}
+    </div>
 
 
 <script>
+    var vue_lab = new Vue({
+        el:"#lab",
+        data:{
+            f_name:"111",
+            l_name:"222",
+            update:"",
+        },
+        computed:{
+            full_name(){
+                console.log(123);
+                this.update= new Date().toDateString(); 
+                return this.f_name + " " + this.l_name;
+            }
+        },
+        watch:{
 
+        }
+    })
 
 
 </script>

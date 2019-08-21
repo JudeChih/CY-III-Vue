@@ -1,0 +1,179 @@
+Lab: vue-router 路由實作練習
+
+
+
+
+1.  安裝 Vue.js 與 vue-router
+
+
+1.1 新建一個 HTML 檔案，檔名: route.HTML
+    內容如下:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+
+  </head>
+  <body>
+
+
+
+
+  </body>
+</html>
+
+
+1.2 在 </head> 的前一行，加入下列兩行以引用 Vue.js 與 vue-router:
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+
+
+
+
+2.  定義路由
+
+
+2.1 在 body 區塊置入下列內容，定義導覽列與頁面檢視框架:
+
+    <div id="app">
+      <router-link v-bind:to="{ path: 'home'}">Home</router-link>
+      <router-link v-bind:to="{ path: 'page2'}">page2</router-link>
+
+      <router-view></router-view>
+    </div>
+
+
+2.2 在 body 區塊置入下列內容，繼續定義兩個元件與路由設定:
+
+    <script type="text/x-template" id="home-template">
+        <div>
+            <h1>Home Page</h1>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="page2-template">
+        <div>
+            <h1>Page Two</h1>
+        </div>
+    </script>
+
+    <script>
+
+      var HomePageComponent = {
+        template: "#home-template"
+      };
+
+      var page2Component = {
+        template: "#page2-template"
+      };
+
+      const routes = [
+        { path: "/home", name: "home", component: HomePageComponent },
+        { path: "/page2", name: "page2", component: page2Component }
+      ];
+
+      const router = new VueRouter({
+        routes
+      });
+
+
+
+    </script>
+
+
+2.3 在 body 區塊最後一個 </script> 前一行，
+    繼續置入下列內容，建立 Vue 物件:
+
+      var app = new Vue({
+        el: '#app',
+        router: router
+      });
+
+
+2.4 在瀏覽器檢視作品，分別點按 Home 與 Page2 測試「換頁」效果。
+
+    <Note>
+    一開始並沒有顯示 Home Page 的內容，
+    我們等一下會解決這個問題。
+
+    <Note>
+    請回顧/閱讀上述程式，推論這一整套架構如何運作。
+
+
+2.5 將 app = new Vue 的程式改成這樣:
+
+      var app = new Vue({
+        el: '#app',
+        router: router,
+        beforeMount() {
+          router.push("/home");
+        }
+      });
+
+
+2.6 在瀏覽器檢視作品，如今一開始會顯示 Home Page 的內容。
+
+
+
+
+3.  傳遞參數給其他元件
+
+
+3.1 修改 home-template 的 HTML 範本，新內容如下:
+
+    <script type="text/x-template" id="home-template">
+        <div>
+            <h1>Home Page</h1>
+            <button v-on:click="gotopage2">Goto Page Two with Parameter</button>
+        </div>
+    </script>
+
+
+3.2 修改 HomePageComponent 的程式，加入 gotopage2 方法，新內容如下:
+
+      var HomePageComponent = {
+        template: "#home-template",
+        methods: {
+            gotopage2: function () {
+                router.push("/page2?param1=100");
+            }
+        }
+      };
+
+
+3.3 在瀏覽器檢視作品，試用 Home Page 的按鈕。
+
+
+3.4 修改 page2-template 的 HTML 範本，新內容如下:
+
+    <script type="text/x-template" id="page2-template">
+        <div>
+            <h1>Page Two</h1>
+            {{ param1Value }}
+        </div>
+    </script>
+
+
+3.5 修改 page2Component 的程式，新內容如下:
+
+      var page2Component = {
+        template: "#page2-template",
+        data: function () {
+            return {
+                param1Value: this.$route.query.param1
+            }
+        }
+      };
+
+
+3.6 在瀏覽器檢視作品，試用 Home Page 的按鈕。
+
+    <Note>
+    請留意程式如何以 this.$route.query 讀取 Request Parameter 內容
+

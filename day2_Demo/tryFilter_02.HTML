@@ -19,7 +19,7 @@
         data: {
             dateData: new Date()
         },
-        filters: {
+        filters: {//底下的function  第一個都是傳入值 第二個才可以讓你自帶變數進去
             dateFormatFilter: function (value, formatStr) {
                 return value.format(formatStr);
             }

@@ -12,11 +12,12 @@
             font-size: 1.25em;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <h2>AJAX Lab</h2>
+        <h2>AJAX Lab 13:20</h2>
         <ul class="nav nav-tabs">
             <li class="active"><a href="#conceptTab">Concept</a></li>
             <li><a href="#getTab">GET</a></li>
@@ -60,7 +61,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="nameTextBox">Your name:</label>
                         <div class="col-md-4">
-                            <input name="nameTextBox" id="nameTextBox" type="text" class="form-control input-md">
+                            <input v-model="helloUserName" name="nameTextBox" id="nameTextBox" type="text" class="form-control input-md">
                         </div>
                     </div>
 
@@ -73,7 +74,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="button1id"></label>
                         <div class="col-md-8">
-                            <button type="button" id="getButton" name="getButton" class="btn btn-success">Hello -- $.get()</button> &nbsp;
+                            <button v-on:click="clickSayHello" type="button" id="getButton" name="getButton" class="btn btn-success">Hello -- $.get()</button> &nbsp;
                             <span id='reportSpan'></span>
                         </div>
                     </div>
@@ -119,34 +120,58 @@
     <script type='text/javascript' src='js/ajax_concept.js'></script>
 
     <script>
+        var appget = new Vue({
+            el:'#getTab',
+            data:{
+                helloUserName:'ABC',
+                userName:"Toby",
+            },
+            methods:{
+                clickSayHello:function(){
+                    let vm = this;
+                    vm.userName = vm.helloUserName;
+                    $.get("/hello/" + this.userName,function(e){
+                        $('#reportSpan').text(e);
+                    })
+                }
+            }
+        })
+
+        
+
+
         $(document).ready(function() {
             $(".nav-tabs a").click(function() {
                 $(this).tab('show');
             });
 
 
-            $("#getButton").on("click", function() {
-                var s = $("#nameTextBox").val();
+            // $("#getButton").on("click", function() {
+            //     var s = $("#nameTextBox").val();
 
 
 
 
 
-                $("#reportSpan").text(s);
-            })
+            //     $("#reportSpan").text(s);
+            // })
 
 
 
             $("#postButton").on("click", function() {
-                var dataToServer = {
-                    firstName: $("#firstNameTextBox").val(),
-                    lastName: $("#lastNameTextBox").val()
-                }
+                appget.clickSayHello();
+
+
+
+                // var dataToServer = {
+                //     firstName: $("#firstNameTextBox").val(),
+                //     lastName: $("#lastNameTextBox").val()
+                // }
 
 
 
 
-                $("#resultSpan").text(JSON.stringify(dataToServer));
+                // $("#resultSpan").text(JSON.stringify(dataToServer));
             })
 
 

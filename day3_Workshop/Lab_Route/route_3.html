@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+
+  </head>
+  <body>
+
+    <div id="app">
+      <router-link v-bind:to="{ path: 'home'}">Home</router-link>
+      <router-link v-bind:to="{ path: 'page2'}">page2</router-link>
+
+      <router-view></router-view>
+    </div>
+    
+
+    <script type="text/x-template" id="home-template">
+      <div>
+          <h1>Home Page</h1>
+          <button v-on:click="gotopage2">Goto Page Two with Parameter</button>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="page2-template">
+      <div>
+          <h1>Page Two</h1>
+          {{ param1Value }}
+      </div>
+    </script>
+
+    <script>
+
+      var HomePageComponent = {
+        template: "#home-template",
+        methods: {
+            gotopage2: function () {
+                router.push("/page2?param1=100");
+            }
+        }
+      };
+
+      var page2Component = {
+        template: "#page2-template",
+        data: function () {
+            return {
+                param1Value: this.$route.query.param1
+            }
+        }
+      };
+
+      const routes = [
+        { path: "/home", name: "home", component: HomePageComponent },
+        { path: "/page2", name: "page2", component: page2Component }
+      ];
+
+      const router = new VueRouter({
+        routes
+      });
+
+      var app = new Vue({
+        el: '#app',
+        router: router,
+        beforeMount() {
+          router.push("/home");
+        }
+      });
+
+
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Work</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fontawesome.css">
+</head>
+
+<body>
+    <div id="wrap">
+        <h1>待辦清單</h1>
+        <button class="add-btn" @click="addClick"><i class="fas fa-plus"></i></button>
+        <input type="text" placeholder="Search keyword..." v-model="titleSearch" class="search-input">
+        <div class="flexbox-wrap">
+            <div class="flex-title">
+                <div class="flex-1">編號</div>
+                <div class="flex-3">開始時間</div>
+                <div class="flex-9">標題</div>
+                <div class="flex-3">結束時間</div>
+                <div class="flex-1"></div>
+                <div class="flex-1"></div>
+            </div>
+            <ul class="flexbox-container">
+                <li v-for="item, index in filterSearch">
+                    <div class="flex-1">{{ index + 1 }}</div>
+                    <div class="flex-3">{{ item.startTime }}</div>
+                    <div class="flex-9">{{ item.title }}</div>
+                    <div class="flex-3">{{ item.endTime }}</div>
+                    <div class="flex-1">
+                        <button class="edit-btn" @click="editClick(index)"><i class="fas fa-pen"></i></button>
+                    </div>
+                    <div class="flex-1">
+                        <button class="del-btn" @click="delClick(index)"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- popup -->
+    <div id="popup-wrap" :class="{ 'active': isActive }">
+        <div class="popup-wrap">
+            <h2>新增 / 修改</h2>
+            <form>
+                <div class="popup-input">
+                    <label for="startTime">開始時間</label>
+                    <input type="text" id="startTime" placeholder="yyyy/mm/dd" v-model="startTime">
+                </div>
+                <div class="popup-input">
+                    <label for="endTime">結束時間</label>
+                    <input type="text" id="endTime" placeholder="yyyy/mm/dd" v-model="endTime">
+                </div>
+                <div class="popup-input">
+                    <label for="title">標題</label>
+                    <input type="text" id="title" placeholder="title" v-model="title">
+                </div>
+            </form>
+            <div class="popup-btn">
+                <button @click="submitBtn">Submit</button>
+                <button @click="closeBtn">Cancel</button>
+            </div>
+            <button class="popup-close" @click="closeBtn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="popup-overlay"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

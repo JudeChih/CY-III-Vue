@@ -18,6 +18,7 @@
             background-color: #f9f9f9;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
 
@@ -25,12 +26,14 @@
 
     <div class="row">
 
-        <div class="col-sm-4">
-            <h2>最新消息<span class="pull-right"><button id="newItem" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></span></h2>
+        <div class="col-sm-4" id="lab">
+            <h2>最新消息{{testOK}}<span class="pull-right"><button v-on:click="newItemClick" id="newItem" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></span></h2>
             <ul id="latestNews" class="list-group">
-                <li class="list-group-item">First item<span class="pull-right"><button class="btn btn-info btn-xs editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-danger btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span></li>
-                <li class="list-group-item">Second item<span class="pull-right"><button class="btn btn-info btn-xs editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-danger btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span></li>
-                <li class="list-group-item">Third item<span class="pull-right"><button class="btn btn-info btn-xs editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-danger btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span></li>
+                <li v-for="newsItem in newsList" class="list-group-item">
+                    {{newsItem.title}} [ {{newsItem.ymd}} ] -- {{newsItem.newsId}}
+                    <span class="pull-right">
+                        <button v-on:click="editclick(newsItem.newsId)" class="btn btn-info btn-xs editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;
+                        <button v-on:click="deleteclick(newsItem.newsId)" class="btn btn-danger btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span></li>
             </ul>
         </div>
 
@@ -55,7 +58,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4>新增/修改</h4>
+                <h4>新增/修改{{currentIndex}}</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -65,7 +68,7 @@
                             標題
                         </label>
                         <input type="text"
-                               id="titleTextBox"
+                               id="titleTextBox" v-model="title"
                                class="form-control"
                                placeholder="請輸入標題" />
                     </div>
@@ -76,7 +79,7 @@
                             日期
                         </label>
                         <input type="text"
-                               id="ymdTextBox"
+                               id="ymdTextBox" v-model="ymd"
                                class="form-control"
                                placeholder="yyyy-mm-dd 例如: 2017-05-20">
                     </div>
@@ -87,7 +90,7 @@
             <div class="modal-footer">
                     <div class="pull-right">
                         <button type="button"
-                                id="okButton"
+                                id="okButton" v-on:click="clickOK"
                                 class="btn btn-success">
                             <span class="glyphicon glyphicon-ok"></span> 確定
                         </button>
@@ -113,6 +116,98 @@
 <script type="text/javascript" src="js/jquery.toast.js"></script>
 
 <script>
+var newsModal = new Vue({
+    el:'#newsModal',
+    data:{
+        title:"",
+        ymd:"",
+        currentIndex:0,
+    },
+    methods:{
+        clickOK:function(){
+            let vm = this;
+            if(vm.currentIndex > 0){
+                appNews.newsList[vm.currentIndex].title = vm.title;
+                appNews.newsList[vm.currentIndex].ymd = vm.ymd;
+                $.ajax({
+                    type:'put',
+                    url:'/home/news',
+                    data:newItem,
+                }).
+                then(function (e){
+                    alert(e);
+                })
+            }else{
+                var newItem = {
+                    title:vm.title,
+                    ymd:vm.ymd
+                }
+                $.ajax({
+                    type:'POST',
+                    url:'/home/news',
+                    data:newItem,
+                }).
+                then(function (e){
+                    alert(e);
+                })
+                // appNews.newsList.push(newItem);
+            }
+            $("#newsModal").modal("hide");
+        }
+    }
+})
+ var appNews = new Vue({
+     el:'#lab',
+     data:{
+         testOK:'OK',
+         newsList:[
+            { ymd: "2017-05-01", title: "Item 1a" },
+            { ymd: "2017-05-01", title: "Item 2a" },
+            { ymd: "2017-05-02", title: "Item 3a" },
+            { ymd: "2017-05-03", title: "Item 4a" },
+            { ymd: "2017-05-04", title: "Item 5a" }
+         ]
+     },
+     methods:{
+         getData:function(){
+             let vm = this;
+             $.ajax({
+                 type:'GET',
+                 url:'/home/news',
+             }).
+             then(function (e){
+                var dataarray = JSON.parse(e);
+                vm.newsList = dataarray;
+             })
+         },
+         newItemClick:function(){
+             let vm = this;
+             newsModal.currentIndex = 0;
+             $("#newsModal").modal( { backdrop: "static" } );
+         },
+         editclick:function(id){
+            newsModal.currentIndex = id;
+            newsModal.title = this.newsList[id].title;
+            newsModal.ymd = this.newsList[id].ymd;
+            $("#newsModal").modal( { backdrop: "static" } );
+         },
+         deleteclick:function(id){
+            $.ajax({
+                type:'delete',
+                url:'/home/news',
+                data:id,
+            }).
+            then(function (e){
+                alert(e);
+            })
+         }
+     }
+ })
+ appNews.getData();
+
+
+
+
 
 // 使用方式:
 // showToast("標題", "提示文字") 例如:
@@ -138,111 +233,111 @@ function showToast(heading, message) {
 }
 
 
-$(function () {
+// $(function () {
 
-    var newsList =
-        [
-            { ymd: "2017-05-01", title: "Item 1" },
-            { ymd: "2017-05-01", title: "Item 2" },
-            { ymd: "2017-05-02", title: "Item 3" },
-            { ymd: "2017-05-03", title: "Item 4" },
-            { ymd: "2017-05-04", title: "Item 5" }
-        ];
+//     var newsList =
+//         [
+//             { ymd: "2017-05-01", title: "Item 1" },
+//             { ymd: "2017-05-01", title: "Item 2" },
+//             { ymd: "2017-05-02", title: "Item 3" },
+//             { ymd: "2017-05-03", title: "Item 4" },
+//             { ymd: "2017-05-04", title: "Item 5" }
+//         ];
 
-    $.get("/home/news", function (e) {
-        newsList = JSON.parse(e);
-        refreshNewsUI();
-    })
+//     $.get("/home/news", function (e) {
+//         newsList = JSON.parse(e);
+//         refreshNewsUI();
+//     })
+//     // refreshNewsUI()
+//     function refreshNewsUI() {
+//         $("#latestNews").empty();
 
-    function refreshNewsUI() {
-        $("#latestNews").empty();
-
-        $.each(newsList, function (key, obj) {
-            var newsText = obj.title + " [" + obj.ymd + "]";
-            var $li = $("<li></li>")
-                        .text(newsText)
-                        .addClass("list-group-item");
-            $li.append('<span class="pull-right"><button class="btn btn-info btn-xs editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-danger btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span>');
-            $li.appendTo("#latestNews");
-        })
+//         $.each(newsList, function (key, obj) {
+//             var newsText = obj.title + " [" + obj.ymd + "]";
+//             var $li = $("<li></li>")
+//                         .text(newsText)
+//                         .addClass("list-group-item");
+//             $li.append('<span class="pull-right"><button class="btn btn-info btn-xs editItem"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>&nbsp;<button class="btn btn-danger btn-xs deleteItem"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span>');
+//             $li.appendTo("#latestNews");
+//         })
     
-        $(".editItem").click(function () {
-            // var iIndex = $(this).parent().parent().index();
-            var iIndex = $(this).closest("li").index();
-            currentIndex = iIndex;
-            $("#titleTextBox").val(newsList[iIndex].title);
-            $("#ymdTextBox").val(newsList[iIndex].ymd);
-            $("#newsModal").modal( { backdrop: "static" } );
-        })
+//         $(".editItem").click(function () {
+//             // var iIndex = $(this).parent().parent().index();
+//             var iIndex = $(this).closest("li").index();
+//             currentIndex = iIndex;
+//             $("#titleTextBox").val(newsList[iIndex].title);
+//             $("#ymdTextBox").val(newsList[iIndex].ymd);
+//             $("#newsModal").modal( { backdrop: "static" } );
+//         })
 
-        $(".deleteItem").click(function () {
-            var iIndex = $(this).closest("li").index();
-            $.ajax({
-                type: "delete",
-                url: "/home/news",
-                data: newsList[iIndex]
-            })
-            .then(function (e) {
-                showToast(e);
-                $.get("/home/news", function (e) {
-                    newsList = JSON.parse(e);
-                    refreshNewsUI();
-                })
-            })
-        })
+//         $(".deleteItem").click(function () {
+//             var iIndex = $(this).closest("li").index();
+//             $.ajax({
+//                 type: "delete",
+//                 url: "/home/news",
+//                 data: newsList[iIndex]
+//             })
+//             .then(function (e) {
+//                 showToast(e);
+//                 $.get("/home/news", function (e) {
+//                     newsList = JSON.parse(e);
+//                     refreshNewsUI();
+//                 })
+//             })
+//         })
 
-    }  // refreshNewsUI
+//     }  // refreshNewsUI
 
-    var currentIndex = -1;
+//     var currentIndex = -1;
     
-    $("#okButton").click(function () {
-        if (currentIndex >= 0) { // edit
-            newsList[currentIndex].title = $("#titleTextBox").val();
-            newsList[currentIndex].ymd = $("#ymdTextBox").val();
-            refreshNewsUI();
-            $("#newsModal").modal("hide");
+//     $("#okButton").click(function () {
+//         if (currentIndex >= 0) { // edit
+//             newsList[currentIndex].title = $("#titleTextBox").val();
+//             newsList[currentIndex].ymd = $("#ymdTextBox").val();
+//             refreshNewsUI();
+//             $("#newsModal").modal("hide");
             
-            $.ajax({
-                type: "put",
-                url: "/home/news",
-                data: newsList[currentIndex]
-            })
-            .then(function (e) {
-                showToast(e);
-            })
-        }
-        else {  // new
-            var newItem = {
-                title: $("#titleTextBox").val(),
-                ymd: $("#ymdTextBox").val()
-            };
-            $.ajax({
-                type: "post",
-                url: "/home/news",
-                data: newItem
-            })
-            .then(function (e) {
-                $.get("/home/news", function (e) {
-                    newsList = JSON.parse(e);
-                    refreshNewsUI();
-                })
-            })
-            $("#newsModal").modal("hide");
-        }
+//             $.ajax({
+//                 type: "put",
+//                 url: "/home/news",
+//                 data: newsList[currentIndex]
+//             })
+//             .then(function (e) {
+//                 showToast(e);
+//             })
+//         }
+//         else {  // new
+//             var newItem = {
+//                 title: $("#titleTextBox").val(),
+//                 ymd: $("#ymdTextBox").val()
+//             };
+//             $.ajax({
+//                 type: "post",
+//                 url: "/home/news",
+//                 data: newItem
+//             })
+//             .then(function (e) {
+//                 $.get("/home/news", function (e) {
+//                     newsList = JSON.parse(e);
+//                     refreshNewsUI();
+//                 })
+//             })
+//             $("#newsModal").modal("hide");
+//         }
         
         
-    })
+//     })
 
 
-    $("#newItem").click(function () {
-        currentIndex = -1;
-        $("#titleTextBox").val("");
-        $("#ymdTextBox").val("");
-        $("#newsModal").modal( { backdrop: "static" } );
-    })
+//     $("#newItem").click(function () {
+//         currentIndex = -1;
+//         $("#titleTextBox").val("");
+//         $("#ymdTextBox").val("");
+//         $("#newsModal").modal( { backdrop: "static" } );
+//     })
 
 
-})  // end of init.
+// })  // end of init.
 
 </script>
 

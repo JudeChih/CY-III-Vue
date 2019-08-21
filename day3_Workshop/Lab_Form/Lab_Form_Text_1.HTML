@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <form class="form-horizontal">
+    <form class="form-horizontal" id="lab">
         <fieldset>
         
         <!-- Form Name -->
@@ -21,7 +21,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="title">Text:</label>  
           <div class="col-md-4">
-          <input id="title" name="title" type="text" placeholder="" class="form-control input-md">
+          <input v-model="title" id="title" name="title" type="text" placeholder="" class="form-control input-md">
             
           </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="price">Price:</label>  
           <div class="col-md-4">
-          <input id="price" name="price" type="number" placeholder="" class="form-control input-md">
+          <input v-model="price" id="price" name="price" type="number" placeholder="" class="form-control input-md">
             
           </div>
         </div>
@@ -39,20 +39,29 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="description">Description</label>
           <div class="col-md-4">                     
-            <textarea class="form-control" id="description" name="description"></textarea>
+            <textarea v-model="description" class="form-control" id="description" name="description"></textarea>
           </div>
         </div>
         </fieldset>
 
         <hr>
-        <h3>show title here</h3>
-        <h3>show price here</h3>
-        <pre>show description here</pre>
+        <h3>{{title}}</h3>
+        <h3>{{price}}</h3>
+        <pre>{{description}}</pre>
 
       </form>
         
 
 <script>
+var lab = new Vue({
+  el:"#lab",
+  data:{
+    title:"ddd",
+    price:"123",
+    description:"怪怪der"
+  }
+})
+
 
 
 
