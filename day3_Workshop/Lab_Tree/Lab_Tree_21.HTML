@@ -17,7 +17,7 @@
     <script type="text/x-template" id="item-template">
         <li>
             <div>{{item.text}}</div>
-            <ul>
+            <ul v-if="item.children.length > 0">
                 <tree-item v-bind:item="itemData"
                     v-for="itemData in item.children">
                 </tree-item>             
